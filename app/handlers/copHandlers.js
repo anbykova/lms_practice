@@ -1,17 +1,17 @@
+var copService = require('../services/copService'),
+    log        = require('../logger');
 var ERRORS  = require('../constants').ERRORS;
-var copService = require('../services/copService');
 
 function getAll(req, res, next) {
      try {
-        //collect +=  req.body
         copService.getAll().then(function success (data) {
             res.json(data);
         }, function error (err) {
-            console.log(err.message);
+            log.error(err.message);
             next(ERRORS.InternalServerError);
         });
      } catch (err) {
-        console.log(err.message);
+        log.error(err.message);
         next(ERRORS.InternalServerError);
      }
 }
@@ -27,15 +27,16 @@ function getItem(req, res, next) {
                 next(ERRORS.NotFound);
             }
         },function error (err) {
-            console.log(err);
+            log.error(err);
             next(ERRORS.InternalServerError);
         });
     } catch (err) {
-        console.log(err.message);
+        log.error(err.message);
         next(ERRORS.InternalServerError);
     }
 
 }
+
 
 function createItem(req, res, next) { //post
    try {
@@ -45,7 +46,7 @@ function createItem(req, res, next) { //post
        var errors = req.validationErrors();
 
        if (errors) {
-           console.log(errors);
+           log.error(errors);
            next(ERRORS.BadRequest);
        } else {
            var data = req.body;
@@ -57,19 +58,19 @@ function createItem(req, res, next) { //post
                    next(ERRORS.NotFound);
                }
            }, function error (err) {
-                   console.log(err.message);
+                   log.error(err.message);
                    next(ERRORS.InternalServerError);
            });
        }
    } catch (err) {
-       console.log(err.message);
+       log.error(err.message);
        next(ERRORS.InternalServerError);
    }
 }
 
 function updateItem(req, res, next) { //put
-   var id = req.params.id;
-   var data = req.body;
+   var id = req.params.id,
+       data = req.body;
 
    try {
        copService.update(id, data).then(function success (data) {
@@ -79,11 +80,11 @@ function updateItem(req, res, next) { //put
                next(ERRORS.NotFound);
            }
        }, function error (err) {
-               console.log(err.message);
+               log.error(err.message);
                next(ERRORS.InternalServerError);
        });
    } catch (err) {
-        console.log(err.message);
+        log.error(err.message);
         next(ERRORS.InternalServerError);
    }
 
@@ -100,16 +101,16 @@ function deleteItem(req, res, next) {
                 next(ERRORS.NotFound);
             }
         }, function error (err) {
-                console.log(err.message);
+                log.error(err.message);
                 next(ERRORS.InternalServerError);
         });
     } catch (err) {
-        console.log(err.message);
+        log.error(err.message);
         next(ERRORS.InternalServerError);
     }
 }
 
-var controller = {
+var handler = {
     getAll : getAll,
     getItem : getItem,
     createItem : createItem,
@@ -117,4 +118,4 @@ var controller = {
     deleteItem : deleteItem
 };
 
-module.exports = controller;
+module.exports = handler;

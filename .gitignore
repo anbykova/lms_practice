@@ -1,0 +1,6 @@
+# ignore dir node_modules 
+/node_modules/*
+# ignore dir .idea 
+/.idea/*
+# ignore lms.iml
+lms.iml

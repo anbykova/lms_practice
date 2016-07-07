@@ -1,13 +1,20 @@
-var gulp = require('gulp');
-var nodemon = require('nodemon');
+var gulp    = require('gulp');
+var dir     = require('require-dir');
 
 
+gulp.task('default', ['lint', 'dev'], function () {
 
-   //nodemon, eslint
+});
 
 
-gulp.task('start', function () {
-    nodemon({
-      script: 'index.js'
-    })
-})
+var path = {
+    script : 'index.js'
+}
+
+var constants = {
+    path : path
+}
+
+gulp.constants = constants;
+
+dir('./gulp');

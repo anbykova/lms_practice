@@ -1,0 +1,11 @@
+1 cop - title, link, description
+ a link- go to another page
+ b the ability to view information about the cop (accordion)
+ c all cop, my cop
+2 possible for the administrator
+ create, update, delete
+3 Employees list (use accordion)
+filter by ldapName, role, cop, citys
+
+
+ 

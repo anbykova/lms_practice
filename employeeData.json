@@ -1,0 +1,18 @@
+[
+    {
+        "ldapName": "vpupkin",
+        "city" : "SARATOV",
+        "copId" : "70e05a00-acf3-4016-8823-060cabc442cb",
+        "copRole" : "TD"
+    },
+    {
+        "ldapName" : "mpupkina",
+        "city" : "SANRAMON",
+        "copId" : "70e05a00-acf3-4016-8823-060cabc442cb"
+    },
+    {
+        "ldapName" : "name",
+        "city" : "MOSCOW",
+        "copId" : "03d49b32-bbff-4ce8-afbc-46943f50a30e"
+    }
+]

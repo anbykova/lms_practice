@@ -1,0 +1,73 @@
+<div class="well">
+    <form class="form-inline">
+        <div class="form-group">
+            <label>LdapName</label>
+            <input ng-model="vm.filterLdapName" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Role</label>
+            <select ng-model="vm.filterRole" class="form-control">
+                <option value="">--none--</option>
+                <option ng-repeat="role in vm.copRoles" value="{{role}}">{{role}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Cop</label>
+            <select ng-model="vm.filterCopId" class="form-control">
+                <option value="">--none--</option>
+                <option ng-repeat="copId in vm.copIds track by $index" value="{{copId}}">{{vm.copNames[copId]}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>City</label>
+            <select ng-model="vm.filterCity" class="form-control">
+                <option value="">--none--</option>
+                <option ng-repeat="city in vm.copCities" value="{{city}}">{{city}}</option>
+            </select>
+        </div>
+
+    </form>
+</div>
+
+<uib-accordion>
+    <div uib-accordion-group ng-class="{true: 'panel-success', false: 'panel-info'}[$odd]"
+         ng-repeat="employee in vm.employeesData | searchFilter:vm.filterLdapName:vm.filterCity:vm.filterRole:vm.filterCopId | orderBy:'ldapName'"
+         is-open="status.open">
+
+        <uib-accordion-heading>
+            <div class="row">
+                <div class="col-sm-1">
+                    <i class="pull-right glyphicon"
+                       ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </div>
+                <div class="col-sm-8">
+                    {{employee.ldapName}}
+                </div>
+                <div class="col-sm-3">
+                    {{employee.city}}
+                </div>
+
+            </div>
+        </uib-accordion-heading>
+
+            <div ng-repeat="copItem in employee.copInfo">
+
+            <span ng-if="vm.copNames[copItem.copId]">
+
+
+                 <b> {{vm.copNames[copItem.copId]}}: </b>
+
+
+                     <span ng-repeat="role in copItem.copRoles" class="label label-primary cop-label-right" >
+                         {{role}}
+                     </span>
+
+
+            </span>
+            </div>
+
+    </div>
+
+
+    </div>
+</uib-accordion>

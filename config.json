@@ -1,0 +1,12 @@
+{
+    "PORT" : 3000,
+    "URL" : "/cop",
+    "PATH_IMAGES": "./public/images/",
+    "MONGO_HOST" : "localhost",
+    "MONGO_PORT" : 27017,
+    "MONGO_NAME" : "copDB",
+    "SECRET_KEY" : "secret",
+    "COP_DATA" : "./COP-July2016.json",
+    "EMPLOYEE_DATA" : "./COP-Leads-July2016.json",
+    "PATH_LOG" : "log/"
+}

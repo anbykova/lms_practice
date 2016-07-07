@@ -2,10 +2,10 @@ function registerRoutes(app, routes) {
     routes.forEach(
         function(route) {app[route.method](route.url, route.callback)}
     );
-};
+}
 
-var routes = {
+var router = {
     registerRoutes : registerRoutes
-};
+}
 
-module.exports = routes;
+module.exports = router;

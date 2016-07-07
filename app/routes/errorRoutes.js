@@ -1,14 +1,20 @@
-function exception(err, req, res, next) {
-    res.send('It\'s error!');
-};
+var ERRORS = require('../constants').ERRORS;
 
-function notFound(req, res) {
-    res.status(404).send('Sorry cant find that!');
-};
+function notFoundHandler(req, res) {
+    var err = ERRORS.NotFound;
 
-error = {
-    exception : exception,
-    notFound  : notFound
+    res.status(err.code).send({status: err.code, message: err.message});
+}
+  // if  res.render('error', { error: err });  , next(err);  then go to ...
+function internalServerErrorHandler(err, req, res, next) {
+    err = err || ERRORS.InternalServerError;
+
+    res.status(err.code).send({status: err.code, message: err.message});
+}
+
+var error = {
+    internalServerErrorHandler : internalServerErrorHandler,
+    notFoundHandler : notFoundHandler
 };
 
 module.exports = error;

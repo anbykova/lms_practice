@@ -1,8 +1,11 @@
-var express = require('express'),
-    app     = express(),
-    server  = require('./app/controls/server');
+var server   = require('./app/controls/server'),
+    database = require('./app/controls/database'),
+    log      = require('./app/logger');
 
-server.start(app);
-server.registerRoutAndError(app);
+process.on('uncaughtException', function (error) {
+    log.error(error);
+});
 
 
+server.start();
+database.start();
